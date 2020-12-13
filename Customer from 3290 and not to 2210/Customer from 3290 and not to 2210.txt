@@ -1,0 +1,8 @@
+--Given two tables 3290 and 2210, find the customers 
+--from 3290 who havent been to 2210
+
+SELECT store_3290.Customer_id , store_3290.Dept_id 
+FROM store_3290
+Left join store_2210
+on store_3290.Customer_id = store_2210.Customer_id
+where store_2210.Customer_id is NULL ;
