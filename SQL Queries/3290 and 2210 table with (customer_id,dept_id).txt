@@ -1,0 +1,6 @@
+--Given two tables with customer_id and dept_id to find only customer to store 3290
+
+SELECT store_3290.Customer_id , store_3290.Dept_id 
+FROM store_3290
+Left join store_2210
+on store_3290.Customer_id = store_2210.Customer_id;

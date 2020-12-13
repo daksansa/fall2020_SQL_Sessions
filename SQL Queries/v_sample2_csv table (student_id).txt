@@ -1,0 +1,25 @@
+december 3rd 2020
+
+
+--SELECT student_id , COUNT(*)
+--FROM v_sample2_csv
+--group by student_id  ;
+--
+--SELECT * 
+--FROM v_sample2_csv
+--where student_id >2
+--
+
+--SELECT student_id , SUM(student_id)
+--FROM v_sample2_csv
+--group by student_id  
+----HAVING COUNT(*)>1; 
+
+SELECT stud_1
+FROM 
+(select table1_csv.student_id as stud_1, table2_csv.student_id as stud_2
+FROM table1_csv
+left join table2_csv
+on table1_csv.student_id = table2_csv.student_id 
+) x
+where stud_2 is NULL

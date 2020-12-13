@@ -1,0 +1,15 @@
+--Given a scores table and asked to find the topper in every 
+--class from the scores table.
+--(classes,student_id,marks) coloumns
+
+SELECT scores_csv.classes,scores_csv.Student_ID 
+FROM (SELECT classes , MAX(marks) as xyz
+FROM scores_csv
+group by classes) x
+left join scores_csv
+on scores_csv.classes =x.classes and  scores_csv.Marks = x.xyz
+;
+
+
+
+
