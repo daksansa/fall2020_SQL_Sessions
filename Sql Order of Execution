@@ -1,0 +1,31 @@
+Sql Order of Execution
+
+Intitially we select the coloumns that we needs to be populated by the help of 
+"Select" command, this is to select data from the database.
+
+Next we select which table we need to work on with using "From" command,which directly says from whic table,
+which can also be co-used with "Join" functioned, the initial table we select for 
+the "join" function will be priortized with all the rows presented from hat specific
+selected table with selected coloumns.(This works "left join" but doesn't make a difference
+with "inner join") The select function when using "Joins" needs formatted like :
+SELECT store_3290.Customer_id , store_3290.Dept_id with the table with coloumn included.
+
+Next we can use "where" function to filter the output as needed with the help of 
+conditions like name withing inverted commas along with coloumn name like:
+WHERE Country='Mexico'; also can be used along with (AND, OR and NOT)
+
+Next is the "group by" function which helps to work on the repeated data on the
+coloumns and populate the output together rather than multiple repeated same data.
+Also whatever coloumn in "group by" function needs to be present in "select" and vice-versa
+
+Next is aggregation functions which can be used in Select functions like MAX(Marks).
+
+Next is "having" functions which can aggregate data with aggregation functions.
+
+Next is "Order by" which helps to sort the output data like : ORDER BY Country DESC;
+this has default ascending mode.
+
+Finally at last we can use "Limit" function to limit data.
+
+*Needs editing
+
