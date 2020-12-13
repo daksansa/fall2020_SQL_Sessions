@@ -4,5 +4,5 @@
 SELECT store_3290.Customer_id , store_3290.Dept_id 
 FROM store_3290
 Left join store_2210
-on store_3290.Customer_id = store_2210.Customer_id
+on store_3290.Customer_id = store_2210.Customer_id and store_3290.Dept_id = store_2210.Dept_id
 where store_2210.Customer_id is NULL ;
