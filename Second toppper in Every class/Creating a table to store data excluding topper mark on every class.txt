@@ -1,0 +1,16 @@
+
+Creating a table to store data excluding topper mark on every class
+
+CREATE table except_topper_marks as
+--creating a table
+SELECT scores_csv.classes, scores_csv.Student_ID, scores_csv.Marks
+--selecting the dta to be populated 
+FROM scores_csv
+--selecting "scores_csv" table to initial join with,
+left join topper_mark 
+--seleccting "topper_mark" to join with "scores_csv"
+on scores_csv.classes = topper_mark.classes and  scores_csv.Student_ID =  topper_mark.Student_ID
+--for on condition using classes and student id since they are the composite unique id
+where topper_mark.classes is NULL ;
+--Trying to take the row which has "topper_mark.classes" row has NULL value
+-- addinng "and topper_mark.Student_ID" to this where condition will also return the same output

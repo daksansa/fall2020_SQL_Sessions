@@ -1,0 +1,10 @@
+--Find topper in the class and create a table.
+
+
+CREATE table topper_mark as 
+SELECT scores_csv.classes , scores_csv.Student_ID
+FROM (SELECT classes , MAX(Marks) as mmarks
+from scores_csv
+group by classes ) x
+LEFT JOIN scores_csv
+on scores_csv.classes = x.classes and scores_csv.Marks = x.mmarks;
