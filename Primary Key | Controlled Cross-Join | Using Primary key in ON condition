@@ -1,4 +1,4 @@
-Primary Key is a unique key value, which uniquely identifies each row/record in a database table and won’t be repeated.
+Primary Key helps to uniqely identify row/data-point/observation
 Primary key can also be unique by combining two or more columns together to create a unique value, which is known as COMPOSITE PRIMARY KEY.
 
 CONTROLLED CROSS JOIN
