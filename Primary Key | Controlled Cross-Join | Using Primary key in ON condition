@@ -1,9 +1,9 @@
-Primary Key is a unique key value in a coloumn and cannot be repeated
-Primark key can also be unique by combining two coloumns together to create a unique value, whic is known as COMPOSITE PRIMARY KEY.
+Primary Key is a unique key value, which uniquely identifies each row/record in a database table and won’t be repeated.
+Primary key can also be unique by combining two or more columns together to create a unique value, which is known as COMPOSITE PRIMARY KEY.
 
-CONTROLLED COMPOSITE JOIN
-This is the type of join returns more than number of rows that any type of join can return, but less thean the maximum number of rows
+CONTROLLED CROSS JOIN
+This is the type of join returns more than number of rows that any type of join can return, but less than the maximum number of rows
 
-Using Primary key in ON condition
-When using primary key of an table as the "ON" condition, 
-the maximum number of row output is the the maximum number of rows available in either of the tables
+Using Primary key of a table as an ON condition
+When using primary key of a table as an "ON" condition, 
+the maximum number of row output is the maximum number of rows available in either of the tables
