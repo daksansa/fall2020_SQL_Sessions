@@ -1,0 +1,17 @@
+create table visit_count as 
+SELECT cust_id, COUNT(visit_id) as visits
+FROM (SELECT cust_id, visit_id , store_id
+FROM scan_csv
+group by cust_id, visit_id , store_id ) as x
+group by cust_id 
+;
+
+(SELECT cust_id, sum(price) as sales
+FROM scan_csv
+where year(date) = 2019
+GROUP by cust_id ;) as cust_sales
+
+SELECT sales.cust_id, visit_count.visitis, cust_sales.sales
+from visit_count 
+inner join cust_sales
+on sales.cust_id= visit_count.cust_id;
