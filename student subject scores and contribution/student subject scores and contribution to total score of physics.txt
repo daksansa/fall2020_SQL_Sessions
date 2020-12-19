@@ -1,0 +1,11 @@
+--From table "stud_subject_marks" find each student's physics score's contribution to the total score of all 
+--three subjects.
+
+SELECT stud_subject_marks.student_id , stud_subject_marks.subject , 
+stud_subject_marks.marks, x.total_marks,(stud_subject_marks.marks*100)/x.total_marks
+FROM (SELECT student_id ,SUM(marks)as total_marks
+FROM stud_subject_marks
+group by student_id) as x
+INNER JOIN stud_subject_marks
+on stud_subject_marks.student_id = x.student_id
+WHERE subject = 'Physics'
