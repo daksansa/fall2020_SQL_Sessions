@@ -2,10 +2,22 @@
 --three subjects.
 
 SELECT stud_subject_marks.student_id , stud_subject_marks.subject , 
-stud_subject_marks.marks, x.total_marks,(stud_subject_marks.marks*100)/x.total_marks
+stud_subject_marks.marks, x.total_marks,(stud_subject_marks.marks*100)/x.total_marks as contribution
 FROM (SELECT student_id ,SUM(marks)as total_marks
 FROM stud_subject_marks
 group by student_id) as x
 INNER JOIN stud_subject_marks
 on stud_subject_marks.student_id = x.student_id
 WHERE subject = 'Physics'
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+First tried to get the data to sum all the marks for every subject for each student and named it as "x"
+Table "x" will have all the total marks obtained by every student
+
+The we tried to use inner joined table "x" with base table "stud_subject_marks" to 
+get the student id , subjects, marks and total marks obtained by every student, since this helps with aggregation to find the contribution.
+
+For this inner join we used " on stud_subject_marks.student_id = x.student_id " for the ON condition to filter, since both table "x" as well as 
+table " stud_subject_marks " has column "student_id" in common.
+
+To be more specific to find subject "physics" contribution towards the total marks obtained by a student we used " WHERE subject = 'Physics' "
