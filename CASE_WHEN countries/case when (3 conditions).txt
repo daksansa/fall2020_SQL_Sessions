@@ -1,0 +1,9 @@
+--select countries,case when
+--countries in ('SL')
+--then 1
+--when 
+--countries in ('MEX')
+--else 7
+--end
+--continents
+--from countries_table_csv
