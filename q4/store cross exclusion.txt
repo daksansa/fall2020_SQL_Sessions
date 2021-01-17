@@ -1,0 +1,17 @@
+select cheat_plus.qtr,cheat_plus.store_id
+from cheat_plus
+left join stores_q_csv
+on cheat_plus.qtr = stores_q_csv.qtr and cheat_plus.store_id = stores_q_csv.store_id 
+where stores_q_csv.qtr is NULL 
+
+--drop table cheat_plus ;
+--create table cheat_plus as 
+--select cheat_csv.qtr, store_id
+--from cheat_csv
+--inner join (select store_id
+--from stores_q_csv
+--group by store_id ) x
+--on 1=1
+
+
+--select * from cheat_plus
