@@ -1,0 +1,16 @@
+
+--Practice pdf -1 
+
+
+
+select y.store,y.quarters,y.sales,x.sales as adjacent_quarter_sales,(x.sales-y.sales) as difference
+from store_que_csv y
+join store_que_csv x
+on y.store=x.store
+where x.quarters= y.quarters + 1
+
+--select y.store,y.quarters,y.sales,x.quarters as x_quarter,x.sales as x_sales,(x.sales-y.sales) as difference
+--from store_que_csv y
+--join store_que_csv x
+--on y.store=x.store
+--where x.quarters= y.quarters + 1

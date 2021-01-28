@@ -1,0 +1,51 @@
+q3
+
+Stores undergo renovation in some quarters.
+Under the renovation period, stores are shut down and no sales figures are reported.
+One store is closed down for exactly on quarter and not more. 
+Those records would be missing from the table.
+Again there are 100 unique stores and 4 quarters. 
+But instead of the ideal 400 records, this time there are lesser records.
+Find out such missing quarters for each store
+
+Method I
+
+--SELECT store,(10-SUM(quarters)) as Missing_Quarters
+--from store_missing_q_csv
+--group by store;
+
+
+
+Method II
+
+select store,Missing_Quarter
+FROM 
+(
+SELECT *,
+--Using case when for finding missing quarters with various criteria's
+CASE
+WHEN quarter = 1 and nxt_q = 3 THEN 2
+WHEN quarter = 2 and nxt_q = 4 THEN 3
+WHEN quarter = 3 and nxt_q IS NULL THEN 4
+WHEN quarter = 2 and nxt_q=3 and previous_q is null THEN 1
+    ELSE 0
+END AS Missing_Quarter
+FROM ( select store, quarter,
+LEAD(quarter,1) OVER (
+	PARTITION by store 
+		ORDER BY quarter
+--Used lead to create a column for next data from specified base column's adjacent cell value
+	) nxt_q,
+LAG(quarter,1) OVER (
+	PARTITION by store 
+		ORDER BY quarter
+--Used lag to create a column for previous data from specified base column's adjacent cell value
+	) previous_q
+FROM 
+	q3
+	) Final
+	) Main_Q_table
+--used !=0 filter data to find missing quarters only  
+	where Missing_Quarter!= 0;
+
+
