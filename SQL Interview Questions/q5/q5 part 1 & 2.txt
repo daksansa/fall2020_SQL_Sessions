@@ -1,0 +1,64 @@
+q5 - Now, instead of the store shutting down for two adjacent quarters, 
+it is closed down for a sequence of quarters. 
+The sequence ranges could range from a minimum of 3 quarters to a maximum of 12 quarters. 
+Find out the start and end quarters of the missing sequence for each store.
+There are 500 unique stores and 96 unique quarters
+
+
+We use this as a patch, where this query below helps to add an additional row at the start of 
+the each row as well as at the end for every store's quarter.
+
+We run this query first to apply patch and then run the second query.
+
+drop table q5_2;
+create table q5_2 as
+select store,a as quarter
+from 
+(select (MIN(quarter)-1) as a
+from q5) x 
+join
+(select store 
+from q5 
+group by store ) y 
+on 1=1
+UNION ALL 
+select * 
+from q5 q 
+union all
+select store,a
+from 
+(select (MAX(quarter)+1) as a
+from q5) x 
+join
+(select store 
+from q5
+group by store ) y 
+on 1=1
+
+-- This was created first but used run this query as step two by being patch applied.
+--assume 1 is the starting quarter (To solve this question for now)
+
+	select *,(quarter+1)as initial_m_q , (nxt_q-1)as final_m_q
+	FROM 
+	(
+	SELECT *,
+	CASE
+	WHEN (nxt_q - quarter)=1 THEN 0
+	WHEN (nxt_q - quarter)>1 THEN 1
+	WHEN nxt_q is null and quarter = 25 THEN 0
+		ELSE 1
+	END AS Missing_Quarter
+	FROM ( select store, quarter,
+	LEAD(quarter,1) OVER (
+		PARTITION by store 
+			ORDER BY quarter
+		) nxt_q,
+	LAG(quarter,1) OVER (
+		PARTITION by store 
+			ORDER BY quarter
+		) previous_q
+	FROM 
+		q5_2
+		) Final
+		)
+		WHERE Missing_Quarter !=0
